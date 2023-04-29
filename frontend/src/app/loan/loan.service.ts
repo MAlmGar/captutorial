@@ -26,4 +26,8 @@ export class LoanService {
   deleteLoan(idLoan: number): Observable<void> {
     return this.http.delete<void>('http://localhost:8080/loan/'+idLoan);
   }
+
+  getAllLoans(): Observable<Loan[]> {
+    return this.http.get<Loan[]>('http://localhost:8080/loan');
+  }
 }

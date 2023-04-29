@@ -41,7 +41,7 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public void save(Long id, LoanDto data) {
+    public void save(Long id, LoanDto dto) {
 
         Loan loan;
 
@@ -51,7 +51,7 @@ public class LoanServiceImpl implements LoanService {
             loan = this.loanRepository.findById(id).orElse(null);
         }
 
-        BeanUtils.copyProperties(data, loan, "id", "customer", "game");
+        BeanUtils.copyProperties(dto, loan, "id", "customer", "game");
 
         this.loanRepository.save(loan);
     }

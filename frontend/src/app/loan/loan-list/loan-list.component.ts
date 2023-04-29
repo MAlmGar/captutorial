@@ -55,7 +55,6 @@ export class LoanListComponent implements OnInit {
     });
   }
 
-
   createLoan() {      
     const dialogRef = this.dialog.open(LoanEditComponent, {
         data: {}
