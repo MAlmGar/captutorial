@@ -27,7 +27,14 @@ INSERT INTO customer(name) VALUES ('Tipo de incógnito');
 
 INSERT INTO loan(game_id, customer_id, loan_date, return_date) VALUES 
 (1, 1, '2023-04-23', '2023-04-28');
-
-
-
+INSERT INTO loan(game_id, customer_id, loan_date, return_date) VALUES 
+(2, 1, '2023-04-25', '2023-04-30');
+INSERT INTO loan(game_id, customer_id, loan_date, return_date) VALUES 
+(3, 2, '2023-06-23', '2023-06-28');
+INSERT INTO loan(game_id, customer_id, loan_date, return_date) VALUES 
+(4, 3, '2023-07-23', '2023-07-28');
+INSERT INTO loan(game_id, customer_id, loan_date, return_date) VALUES 
+(5, 4, '2023-08-23', '2023-08-28');
+INSERT INTO loan(game_id, customer_id, loan_date, return_date) VALUES 
+(6, 5, '2023-09-23', '2023-09-28');
 

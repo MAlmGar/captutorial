@@ -1,5 +1,6 @@
 package com.ccsw.tutorial.loan;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -10,11 +11,10 @@ import com.ccsw.tutorial.loan.model.LoanSearchDto;
 
 public interface LoanService {
 
-    Loan get(Long id);
+    Page<Loan> findPage(LoanSearchDto dto, String titleGame, String nameCustomer, String inputDate)
+            throws ParseException;
 
-    Page<Loan> findPage(LoanSearchDto dto);
-
-    void save(Long id, LoanDto dto);
+    void save(Long id, LoanDto dto) throws Exception;
 
     void delete(Long id) throws Exception;
 

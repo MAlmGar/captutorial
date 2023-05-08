@@ -4,7 +4,6 @@ import { AuthorPage } from './model/AuthorPage';
 import { Observable, of } from 'rxjs';
 import { Author } from './model/Author';
 import { HttpClient } from '@angular/common/http';
-import { AUTHOR_DATA_LIST } from './model/mock-authors-list';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,6 @@
 package com.ccsw.tutorial.loan;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ccsw.tutorial.loan.model.Loan;
@@ -33,20 +35,23 @@ public class LoanController {
     @Autowired
     DozerBeanMapper mapper;
 
-    @Operation(summary = "Find Page", description = "Method that returns a page of Loans")
+    @Operation(summary = "Find Page", description = "Method that returns a filtered page of Loans")
     @RequestMapping(path = "", method = RequestMethod.POST)
-    public Page<LoanDto> findPage(@RequestBody LoanSearchDto dto) {
+    public Page<LoanDto> findPage(@RequestBody LoanSearchDto dto,
+            @RequestParam(value = "titleGame", required = false) String titleGame,
+            @RequestParam(value = "nameCustomer", required = false) String nameCustomer,
+            @RequestParam(value = "inputDate", required = false) String inputDate) throws ParseException {
 
-        Page<Loan> page = this.loanService.findPage(dto);
+        Page<Loan> page = this.loanService.findPage(dto, titleGame, nameCustomer, inputDate);
 
         return new PageImpl<>(
                 page.getContent().stream().map(e -> mapper.map(e, LoanDto.class)).collect(Collectors.toList()),
                 page.getPageable(), page.getTotalElements());
     }
 
-    @Operation(summary = "Save or Update", description = "Method that saves or updates a Loan")
+    @Operation(summary = "Save", description = "Method that creates a new Loan")
     @RequestMapping(path = { "", "/{id}" }, method = RequestMethod.PUT)
-    public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody LoanDto dto) {
+    public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody LoanDto dto) throws Exception {
 
         this.loanService.save(id, dto);
     }
